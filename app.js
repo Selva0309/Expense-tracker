@@ -18,6 +18,9 @@ app.set('views', 'views');
 
 app.get('/expenselist', expenseroute);
 app.post('/expenses', expenseroute);
+app.post('/edit-expense', expenseroute);
+app.post('/update-expense', expenseroute);
+app.post('/delete-expense', expenseroute);
 
 
 
