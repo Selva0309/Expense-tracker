@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Sign-Up</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<body>
+    <section class="header-nav">
+        <h1>EXPENSE TRACKER</h1>
+    </section>
+    <div class="container-head">
+        <div><h2>Sign Up</h2></div>
+        <div class="media">
+            <li><a href="#" class="fa fa-facebook"></a></li>
+            <li><a href="#" class="fa fa-twitter"></a></li>
+            <li><a href="#" class="fa fa-google"></a></li>
+        </div>
+    </div>
+    <section class="signup-container">
+        <h3>Please Enter the below fields for signing up</h3>
+        <form class="form-control" action='/user/signup' method="POST">
+           
+            <div>
+                <label>Your Name</label>
+                <input type="text" id ='name' name="name" required placeholder="Name"/>
+            </div>
+            <div >
+                <label >Your Email</label>
+                <input type="text" id ='email' name="email" required placeholder="sample@abc.com"/>
+            </div>
+            <div >
+                <label>Your Password</label>
+                <input type="password" id ='password' name="password" required placeholder="password"/>
+            </div>
+            <button class="btn" type="submit">Sign-Up</button>
+                                 
+        </form>
+    </section>
+    <div class="existing-user">
+        <P>Already an existing User   <button class="login-btn">Login</button> </P>
+    </div>
+    <div class="footer-items">
+        
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
