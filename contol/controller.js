@@ -1,3 +1,4 @@
+
 const path = require('path');
 const { where } = require('sequelize');
 const Expenses = require('../model/Data');
