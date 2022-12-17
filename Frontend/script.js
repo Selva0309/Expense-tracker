@@ -10,11 +10,20 @@ function signup(){
 
     axios.post('http://localhost:5000/user/signup',{name: name, email:email, password:password})
     .then((response)=>{
+        if(response.status==201){
         message = response.data.message;
         notifyUser(message);
         showloginpage();
-    })
-}
+        } else {
+            notifyUser(err);
+        }
+    }).catch(err => {
+        if(err.response.status == 400){
+            notifyUser(err.response.data.message);
+            showloginpage();
+        }
+})
+};
 
 
 function notifyUser(message) {
@@ -51,21 +60,25 @@ function login(){
     console.log(email, password);
 
     axios.post('http://localhost:5000/user/login',{email:email, password:password})
-    .then((response)=>{
+    .then((response) =>{
+              
         message = response.data.message;
         success = response.data.success;
+        Status = response.status;
+        console.log(Status, message);
         if(success==true){
             notifyUser(message);
-        } else {
-            setTimeout(()=>{
-                window.location.reload();
-                
-            },4000)
-            notifyUser(message);
-            
-            
-        }
+        } 
         
         // showloginpage();
+    }). catch(err => {
+        if(err.response.status == 400){
+            notifyUser(err.response.data.message);
+        } else if (err.response.status == 404){
+            notifyUser(err.response.data.message);
+            setTimeout(()=>{
+                window.location.reload();
+            }, 4000)
+        }
     })
 }
