@@ -15,15 +15,16 @@
         <h1>EXPENSE TRACKER</h1>
     </section>
     <section class="notification-container"></section>
-    <div class="container-head">
-        <div><h2>Sign Up</h2></div>
-        <div class="media">
-            <li><a href="#" class="fa fa-facebook"></a></li>
-            <li><a href="#" class="fa fa-twitter"></a></li>
-            <li><a href="#" class="fa fa-google"></a></li>
-        </div>
-    </div>
+   
     <section class="signup-container">
+        <div class="container-head">
+            <div><h2>Sign Up</h2></div>
+            <div class="media">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-twitter"></a></li>
+                <li><a href="#" class="fa fa-google"></a></li>
+            </div>
+        </div>
         <h3>Please Enter the below fields for signing up</h3>
         <form class="form-control" id="form-control">
            
@@ -42,10 +43,39 @@
             <button class="btn" type="button" onclick="signup()">Sign-Up</button>
                                  
         </form>
+        <div class="existing-user">
+            <P>Already an existing User   <button class="login-btn" type="button" onclick="showloginpage()">Login</button> </P>
+        </div>
     </section>
-    <div class="existing-user">
-        <P>Already an existing User   <button class="login-btn">Login</button> </P>
-    </div>
+    
+    <section class="login-container">
+        <div class="container-head">
+            <div><h2>Login</h2></div>
+            <div class="media">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-twitter"></a></li>
+                <li><a href="#" class="fa fa-google"></a></li>
+            </div>
+        </div>
+        <h3>Please Enter the below fields for log in</h3>
+        <form class="form-control" id="login-form-control">
+           
+            
+            <div >
+                <label >Your Email</label>
+                <input type="text" id ='useremail' name="email" required placeholder="sample@abc.com"/>
+            </div>
+            <div >
+                <label>Your Password</label>
+                <input type="password" id ='userpassword' name="password" required placeholder="password"/>
+            </div>
+            <button class="btn" type="button" onclick="login()">Login</button>
+                                 
+        </form>
+        <div class="existing-user">
+            <P>Not an existing User   <button class="login-btn" type="button" onclick="showsignuppage()">Sign up</button> </P>
+        </div>
+    </section>
     <div class="footer-items">
         
     </div>

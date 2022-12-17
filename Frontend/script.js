@@ -1,3 +1,6 @@
+const logincontainer = document.querySelector(".login-container");
+const signupcontainer = document.querySelector(".signup-container");
+
 function signup(){
 
     const name = document.getElementById('name').value;
@@ -9,6 +12,7 @@ function signup(){
     .then((response)=>{
         message = response.data.message;
         notifyUser(message);
+        showloginpage();
     })
 }
 
@@ -24,5 +28,44 @@ function notifyUser(message) {
             setTimeout(()=>{
                 notification.remove();
                 container.style = 'display: none;'
-            },2500)
+            },3500)
+}
+
+function showloginpage(){
+    signupcontainer.style = 'display: none';
+    logincontainer.style = 'display: flex';
+    
+}
+
+function showsignuppage(){
+    signupcontainer.style = 'display: flex';
+    logincontainer.style = 'display: none';
+    
+}
+
+function login(){
+
+    
+    const email = document.getElementById('useremail').value;
+    const password = document.getElementById('userpassword').value;
+    console.log(email, password);
+
+    axios.post('http://localhost:5000/user/login',{email:email, password:password})
+    .then((response)=>{
+        message = response.data.message;
+        success = response.data.success;
+        if(success==true){
+            notifyUser(message);
+        } else {
+            setTimeout(()=>{
+                window.location.reload();
+                
+            },4000)
+            notifyUser(message);
+            
+            
+        }
+        
+        // showloginpage();
+    })
 }

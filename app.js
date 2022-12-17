@@ -28,6 +28,7 @@ app.post('/edit-expense', expenseroute);
 app.post('/update-expense', expenseroute);
 app.post('/delete-expense', expenseroute);
 app.post('/user/signup', userroute);
+app.post('/user/login', userroute);
 
 
 

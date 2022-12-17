@@ -41,7 +41,7 @@ background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(62,32,154,1) 0%, rgba
     background-color: rgba(0, 0, 0, 0.5)
 }
 
-.signup-container h3{
+.signup-container h3, .login-container h3{
     align-items: center;
     text-align: center;
     font-size: 14px;
@@ -77,6 +77,7 @@ background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(62,32,154,1) 0%, rgba
     padding: 10px;
     font-size: 18px;
     border: none;
+    display: inherit;
     
 }
 .form-control div{
@@ -202,4 +203,22 @@ li {
     font-family: inherit;
     font-size: 14px;
     border-radius: 5px;
+}
+
+
+.login-container{
+    margin-top: 100px;
+    width: 30%;
+    height: 68vh;
+    margin: 40px auto;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+.login-container.container-head h2{
+    display: inherit;
 }
