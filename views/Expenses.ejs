@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel = "stylesheet" href="style.css">
+</head>
+<body>
+    <% if (prods.length > 0) { %> 
+        <div class="container">
+            <h2>List of Expenses</h2>
+            
+            <div class="box">            
+                <% for (let prod of prods) {%>
+                    <li><article class="card expense item">
+                        <div class= 'expense'>
+                            <div><%= prod.description %></div>
+                            <div><%= prod.category %></div>
+                            <div><%= prod.amount %></div>
+                            
+                            
+                        </div>
+                                                  
+                        <form action="/edit-expense" method="POST">
+                            <input type="hidden" name="expenseId" value="<%= prod.id %>">
+                            <button class="btn">Edit</button>
+                        
+                        </form>
+                        <form action="/delete-expense" method="POST">
+                        <input type="hidden" name="expenseId" value="<%= prod.id %>">
+                        <button class="btn">Delete</button>
+                        </form>
+            </article></li>
+            <% } %>
+            </div>
+            <form action="/" method="POST">
+                <button class="btn">Add a new expense</button>
+            </form>
+        </div>
+    <% } else { %>
+        <h2>No Expense added yet</h2>
+       <% }%>     
+</body>
+</html>
