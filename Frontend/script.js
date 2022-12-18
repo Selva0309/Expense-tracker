@@ -64,10 +64,13 @@ function login(){
               
         message = response.data.message;
         success = response.data.success;
-        Status = response.status;
-        console.log(Status, message);
+        // Status = response.status;
+        // console.log(Status, message);
         if(success==true){
             notifyUser(message);
+            setTimeout(()=>{
+                window.location.assign('/main.html');
+            }, 2000)
         } 
         
         // showloginpage();

@@ -47,6 +47,7 @@ exports.loginuser=(req,res,next)=>{
                 }
                 if(result === true){
                     return res.status(201).json({success: true, message:"Logged in successfully"})
+                    // res.redirect('/main.html');
                 }
                 else {
                     return res.status(400).json({success: false, message:"Incorrect password!!"})

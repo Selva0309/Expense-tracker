@@ -32,7 +32,9 @@ app.post('/user/login', userroute);
 
 
 
-
+app.use((req,res)=>{
+    res.sendFile(path.join(__dirname, "Frontend/home.html"))
+})
 
 sequelize.sync()
 .then(result=>{
