@@ -15,7 +15,7 @@ exports.addexpense = (req,res,next)=>{
     })
     .then(result =>{
     console.log('Created expense');
-    res.redirect('/expenselist');
+    res.status(200).json({success:true, message:"Expense added successfully"})
     }).catch(err=>console.log(err))
 };
 
@@ -30,11 +30,12 @@ exports.expenselist = (req,res,next)=>{
     console.log("Expense page loaded")
     Expenses.findAll().then(expenses =>{
         
-        res.render('expenses',{
-            prods: expenses,
-            pageTitle: 'Expenses',
-            path: '/expenselist'
-        });
+        // res.render('expenses',{
+        //     prods: expenses,
+        //     pageTitle: 'Expenses',
+        //     path: '/expenselist'
+        // });
+        res.status(200).json({result: expenses});
     }).catch(err => console.log(err));
     
 };
@@ -71,7 +72,7 @@ exports.updateexpense=(req,res,next) =>{
 
 exports.deleteexpense = (req,res,next) =>{
     const expenseID = req.body.expenseId;
-
+    // console.log(expenseID);
     Expenses.findByPk(expenseID)
     .then(expenses=>{
     
@@ -79,7 +80,7 @@ exports.deleteexpense = (req,res,next) =>{
     })
     .then(result=>{
         console.log('removed expense')
-        res.redirect('/expenselist')
+        res.status(200).json({success:true, message:"Expense deleted"})
     }
     ).catch(err=>console.log(err))
 }
