@@ -1,7 +1,7 @@
 const path = require('path');
 const bodyParser = require('body-parser');
 const sequelize = require('./utils/database');
-const Expenses = require('./model/Data');
+const Expenses = require('./model/Expenses');
 const User = require('./model/user');
 const expenseroute = require('./routes/expenseroute');
 const userroute= require('./routes/user-route');
@@ -35,6 +35,9 @@ app.post('/user/login', userroute);
 app.use((req,res)=>{
     res.sendFile(path.join(__dirname, "Frontend/home.html"))
 })
+
+User.hasOne(Expenses);
+Expenses.belongsTo(User);
 
 sequelize.sync()
 .then(result=>{

@@ -64,13 +64,15 @@ function login(){
               
         message = response.data.message;
         success = response.data.success;
+        token = response.data.token;
         // Status = response.status;
         // console.log(Status, message);
         if(success==true){
             notifyUser(message);
-            setTimeout(()=>{
-                window.location.assign('/main.html');
-            }, 2000)
+            localStorage.setItem('token', token);
+            window.location.assign('/Expenses.html');
+            
+
         } 
         
         // showloginpage();

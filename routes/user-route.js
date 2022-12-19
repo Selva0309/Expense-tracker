@@ -3,9 +3,9 @@ const express = require('express');
 
 const router = express.Router();
 
-const Expenses = require('../model/Data');
+const Expenses = require('../model/Expenses');
 
-const expensecontroller = require('../contol/controller');
+const expensecontroller = require('../contol/expensecontroller');
 const usercontroller = require('../contol/usercontroller');
 
 

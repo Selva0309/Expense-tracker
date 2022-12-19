@@ -1,5 +1,8 @@
 const User = require('../model/user');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
 
 exports.adduser=(req,res,next)=>{
     // console.log(req.body,req.params, req.data);
@@ -46,8 +49,8 @@ exports.loginuser=(req,res,next)=>{
                     throw new Error('Something went wrong');
                 }
                 if(result === true){
-                    return res.status(201).json({success: true, message:"Logged in successfully"})
-                    // res.redirect('/main.html');
+                    return res.status(201).json({success: true, message:"Logged in successfully", token: accesstoken(user.id,user.name)})
+                    // res.redirect('/Expenses.html');
                 }
                 else {
                     return res.status(400).json({success: false, message:"Incorrect password!!"})
@@ -60,3 +63,9 @@ exports.loginuser=(req,res,next)=>{
 })
         
 };
+
+function accesstoken(id,name){
+    let token = jwt.sign({userId: id, name:name},process.env.SIGN_KEY)
+    console.log(token);
+    return token;
+}

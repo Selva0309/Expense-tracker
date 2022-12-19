@@ -1,14 +1,16 @@
 
 const path = require('path');
 const { where } = require('sequelize');
-const Expenses = require('../model/Data');
+const Expenses = require('../model/Expenses');
+const User = require('../model/user');
 
 
 exports.addexpense = (req,res,next)=>{
     const description = req.body.description;
     const category = req.body.category;
     const amount = req.body.amount;
-    Expenses.create({
+    console.log(description,category,amount);
+    req.user.createExpense({
     description: description,
     category: category,
     amount: amount
@@ -28,7 +30,7 @@ exports.getindex = (req,res,next)=>{
 
 exports.expenselist = (req,res,next)=>{
     console.log("Expense page loaded")
-    Expenses.findAll().then(expenses =>{
+    Expenses.findAll({where: {userId: req.user.id}}).then(expenses =>{
         
         // res.render('expenses',{
         //     prods: expenses,
@@ -73,7 +75,7 @@ exports.updateexpense=(req,res,next) =>{
 exports.deleteexpense = (req,res,next) =>{
     const expenseID = req.body.expenseId;
     // console.log(expenseID);
-    Expenses.findByPk(expenseID)
+    req.user.getExpense({where: {id: expenseID}})
     .then(expenses=>{
     
     return expenses.destroy()

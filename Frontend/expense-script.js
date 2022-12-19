@@ -5,11 +5,12 @@ window.addEventListener('DOMContentLoaded',()=>{
 })
 
 function addexpense() {
+    const token = localStorage.getItem('token');
     const amount = document.getElementById('amount').value;
     const description = document.getElementById('description').value;
     const category = document.getElementById('category').value;
-    console.log(amount,description,category);
-    axios.post('http://localhost:5000/expenses',{description: description, category:category, amount:amount})
+    console.log(amount,description,category,token);
+    axios.post('http://localhost:5000/expenses',{description: description, category:category, amount:amount},{headers: {"Authorization": token}})
     .then((response)=>{
         message = response.data.message;
         notifyUser(message);
@@ -33,10 +34,14 @@ function notifyUser(message) {
 }
 
 function showexpense(){
-    axios.get('http://localhost:5000/expenselist')
+    const token = localStorage.getItem('token');
+    axios.get('http://localhost:5000/expenselist', {headers: {"Authorization": token}})
     .then((response)=>{
        let expenses = response.data.result;
        console.log(expenses);
+       if(expenses.length==0){
+        expenselist.innerHTML=`<p>There is no expense to display</p>`
+       } else {
        expenselist.innerHTML='';
        expenses.forEach(expense => {
         const id = expense.id;
@@ -58,12 +63,14 @@ function showexpense(){
         </div> 
         `        
         expenselist.appendChild(expenseitem);
-       }); 
+       });
+    }
     })
 }
 
 function deleteexpense(id){
-    axios.post('http://localhost:5000/delete-expense',{expenseId: id})
+    const token = localStorage.getItem('token');
+    axios.post('http://localhost:5000/delete-expense',{expenseId: id}, {headers: {"Authorization": token}})
     .then((response)=>{
         message = response.data.message;
         notifyUser(message);

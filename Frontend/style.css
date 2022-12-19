@@ -368,3 +368,7 @@ option{
     color: red;
 }
 
+.expense-list p {
+    color: #A8EB12;
+    font-size: 18px;
+}
