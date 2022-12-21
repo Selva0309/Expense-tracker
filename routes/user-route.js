@@ -4,8 +4,9 @@ const express = require('express');
 const router = express.Router();
 
 const Expenses = require('../model/Expenses');
+const User = require('../model/user');
 
-const expensecontroller = require('../contol/expensecontroller');
+
 const usercontroller = require('../contol/usercontroller');
 
 

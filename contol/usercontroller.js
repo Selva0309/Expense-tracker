@@ -9,24 +9,29 @@ exports.adduser=(req,res,next)=>{
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
+    console.log(email,name,password);
     User.findAll({where: {email: email}})
     .then(users=>{
         let user;
         user= users[0];
     
         if (user){
+            console.log('User Exists');
           return res.status(400).json({success: false, message:"User already exists. Please login with the email credentials"})  
         } else{
+            console.log('User not exists');
             const saltrounds = 10;
             bcrypt.hash(password,saltrounds, async (err, hash)=>{
+                console.log('hashing done')
                 await User.create({
                     name: name,
                     email: email,
                     password: hash
                 })
-                res.status(201).json({success: true, message:"Signed up successfully"})
             })
-
+            console.log('User created')    
+            return res.status(201).json({success: true, message:"Signed up successfully"})
+            
 }
 }).catch(err=>res.status(500).json(err))
 };
@@ -49,7 +54,7 @@ exports.loginuser=(req,res,next)=>{
                     throw new Error('Something went wrong');
                 }
                 if(result === true){
-                    return res.status(201).json({success: true, message:"Logged in successfully", token: accesstoken(user.id,user.name)})
+                    return res.status(201).json({success: true, message:"Logged in successfully", token: accesstoken(user.id,user.name), premium: user.ispremiumuser})
                     // res.redirect('/Expenses.html');
                 }
                 else {

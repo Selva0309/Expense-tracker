@@ -37,7 +37,7 @@ function notifyUser(message) {
             setTimeout(()=>{
                 notification.remove();
                 container.style = 'display: none;'
-            },3500)
+            },2000)
 }
 
 function showloginpage(){
@@ -65,11 +65,13 @@ function login(){
         message = response.data.message;
         success = response.data.success;
         token = response.data.token;
+        premium = response.data.premium;
         // Status = response.status;
         // console.log(Status, message);
         if(success==true){
             notifyUser(message);
             localStorage.setItem('token', token);
+            localStorage.setItem('premium', premium);
             window.location.assign('/Expenses.html');
             
 

@@ -16,6 +16,7 @@
     <section class="notification-container"></section>
     <section class="full-container">
     <section class="expense-container">
+        
     <form class="container" id ='form' action="/expenses" method="POST">
          
         <div class="box">         
@@ -39,8 +40,9 @@
             <button class = 'btn' type="button" onclick="addexpense()">Add Expense</button>
         </div>
         </form>
-    
+        
     </section>
+    
     <section class="tracker-container">
         <h2>List of Expenses</h2>
         <div class="expense-list-header">
@@ -52,6 +54,9 @@
 
         </ul>
     </section>
+
+    <button id="rzp-button" onclick="razorpay()">Buy Premium</button>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </section>
     
 </body>

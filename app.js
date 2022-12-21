@@ -1,10 +1,14 @@
 const path = require('path');
 const bodyParser = require('body-parser');
 const sequelize = require('./utils/database');
-const Expenses = require('./model/Expenses');
+
 const User = require('./model/user');
+const Expenses = require('./model/Expenses');
+const Order = require ('./model/orders');
+
 const expenseroute = require('./routes/expenseroute');
 const userroute= require('./routes/user-route');
+const purchaseroute = require('./routes/purchase-route');
 var cors = require('cors');
 
 
@@ -27,8 +31,12 @@ app.post('/expenses', expenseroute);
 app.post('/edit-expense', expenseroute);
 app.post('/update-expense', expenseroute);
 app.post('/delete-expense', expenseroute);
+
 app.post('/user/signup', userroute);
 app.post('/user/login', userroute);
+app.get('/purchase/premiummembership', purchaseroute)
+app.post('/purchase/updatetransactionstatus', purchaseroute)
+
 
 
 
@@ -36,8 +44,13 @@ app.use((req,res)=>{
     res.sendFile(path.join(__dirname, "Frontend/home.html"))
 })
 
-User.hasOne(Expenses);
+User.hasMany(Expenses);
 Expenses.belongsTo(User);
+
+Order.belongsTo(User);
+User.hasMany(Order);
+
+
 
 sequelize.sync()
 .then(result=>{

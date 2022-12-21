@@ -30,7 +30,7 @@ exports.getindex = (req,res,next)=>{
 
 exports.expenselist = (req,res,next)=>{
     console.log("Expense page loaded")
-    Expenses.findAll({where: {userId: req.user.id}}).then(expenses =>{
+    req.user.getExpenses().then(expenses =>{
         
         // res.render('expenses',{
         //     prods: expenses,
@@ -75,11 +75,12 @@ exports.updateexpense=(req,res,next) =>{
 exports.deleteexpense = (req,res,next) =>{
     const expenseID = req.body.expenseId;
     // console.log(expenseID);
-    req.user.getExpense({where: {id: expenseID}})
-    .then(expenses=>{
+    req.user.getExpenses({where: {id : expenseID,}})
+        .then(expense=>{
+                expense[0].destroy();
+            })
     
-    return expenses.destroy()
-    })
+    
     .then(result=>{
         console.log('removed expense')
         res.status(200).json({success:true, message:"Expense deleted"})
