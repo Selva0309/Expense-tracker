@@ -4,6 +4,7 @@ var premium = localStorage.getItem('premium');
 window.addEventListener('DOMContentLoaded',()=>{
     checkpremium();
     showexpense();
+    
 })
 
 function addexpense() {
@@ -92,10 +93,13 @@ async function razorpay() {
                 axios.post('http://localhost:5000/purchase/updatetransactionstatus', {
                     order_id: options.order_id,
                     payment_id: response.razorpay_payment_id,
+                    message: 'SUCCESSFUL',
+                    premium : true
             }, {headers: {"Authorization": token}})
-            alert("You are a Premium user now")
+            alert('Congratulations!!! You are a premium user now')
             localStorage.setItem('premium', true);
             window.location.reload();
+            
             }
     }
 
@@ -117,9 +121,26 @@ function checkpremium(){
     if (premium === 'true') {
         document.getElementById('rzp-button').style = 'display: none';
         document.querySelector('.header-nav').innerHTML = `
-        <h1>EXPENSE TRACKER |</h1> <h4>PREMIUM USER</h4>
+        <h1>EXPENSE TRACKER </h1> <h4>PREMIUM USER</h4>
         `
+        document.getElementById('premium-btn').style = 'display: block';
 
     }
 }
 
+function signout(){
+    localStorage.clear();
+    window.location.assign('/home.html')
+}
+
+function premiumfeatures(){
+    window.location.assign('/Premiumfeatures.html');
+   
+}
+
+function getdashboard(){
+    axios.get('http://localhost:5000/premium/dashboard')
+    .then(response=>{
+        console.log(response);
+    })
+}

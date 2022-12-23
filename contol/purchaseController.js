@@ -32,15 +32,17 @@ exports.updatestatus = async (req,res,next) =>{
     try {
         const order_id = req.body.order_id;
         const payment_id = req.body.payment_id;
+        const message = req.body.message;
+        const premium = req.body.premium;
  
         Order.findOne({where: {orderid: order_id}})
         .then (order=>{
             console.log('Order found');
-            order.update({paymentid: payment_id, status: "SUCCESSFUL" })
+            order.update({paymentid: payment_id, status: message })
             .then(()=>{
-                return req.user.update({ispremiumuser: true})
+                return req.user.update({ispremiumuser: premium})
                     .then(()=>{
-                        return res.status(202).json({success:true, message: "Transaction Successful"});
+                        return res.status(202).json({success:true, message: `Transaction ${message}`});
                         }).catch(err=>{
                             throw new Error(err);
                             })
