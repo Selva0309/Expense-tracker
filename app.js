@@ -10,6 +10,7 @@ const expenseroute = require('./routes/expenseroute');
 const userroute= require('./routes/user-route');
 const purchaseroute = require('./routes/purchase-route');
 const premiumroute = require('./routes/premium-route');
+const passwordroute = require('./routes/password')
 var cors = require('cors');
 
 
@@ -38,6 +39,7 @@ app.post('/user/login', userroute);
 app.get('/purchase/premiummembership', purchaseroute)
 app.post('/purchase/updatetransactionstatus', purchaseroute)
 app.get('/premium/dashboard', premiumroute)
+app.post('/password/forgotpassword', passwordroute)
 
 
 

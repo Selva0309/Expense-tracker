@@ -38,7 +38,7 @@ background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(62,32,154,1) 0%, rgba
     height: 68vh;
     margin: 40px auto;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: flex-start;
     border-radius: 5px;
@@ -217,7 +217,7 @@ li {
     height: 68vh;
     margin: 40px auto;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 5px;

@@ -92,3 +92,12 @@ document.querySelector('.forgot-btn').addEventListener('click', forgotpasswordpa
     document.querySelector('.login-container').style = 'display: none;';
     document.querySelector('.forgetpassword-container').style = 'display: block;'
 } )
+
+function sendEmail(){
+    const emailID = document.getElementById('forgotemail').value;
+    console.log(emailID)
+    axios.post('http://localhost:5000//password/forgotpassword', {emailID})
+    .then(response=>{
+        console.log(response);
+    })
+}
