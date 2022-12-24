@@ -68,15 +68,24 @@
             <div >
                 <label>Your Password</label>
                 <input type="password" id ='userpassword' name="password" required placeholder="password"/>
+                
             </div>
             <button class="btn" type="button" onclick="login()">Login</button>
                                  
         </form>
+        <button class='forgot-btn'>Forget Password?</button> 
         <div class="existing-user">
             <P>Not an existing User   <button class="login-btn" type="button" onclick="showsignuppage()">Sign up</button> </P>
         </div>
     </section>
-    <div class="footer-items">
+
+    <div class="forgetpassword-container">
+        <div class="inner-container">
+            <label >Your Email</label>
+            <input type="text" id ='forgotemail' name="email" required placeholder="sample@abc.com"/>
+        </div>    
+        <button class="btn" type="button" onclick="sendEmail()">Click here to send Email</button>
+        
         
     </div>
 </body>

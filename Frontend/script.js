@@ -72,8 +72,7 @@ function login(){
             notifyUser(message);
             localStorage.setItem('token', token);
             localStorage.setItem('premium', premium);
-            window.location.assign('/Expenses.html');
-            
+            window.location.assign('/Expenses.html');           
 
         } 
         
@@ -89,3 +88,7 @@ function login(){
         }
     })
 }
+document.querySelector('.forgot-btn').addEventListener('click', forgotpasswordpage => {
+    document.querySelector('.login-container').style = 'display: none;';
+    document.querySelector('.forgetpassword-container').style = 'display: block;'
+} )
