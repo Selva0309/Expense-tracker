@@ -96,7 +96,7 @@ document.querySelector('.forgot-btn').addEventListener('click', forgotpasswordpa
 function sendEmail(){
     const emailID = document.getElementById('forgotemail').value;
     console.log(emailID)
-    axios.post('http://localhost:5000//password/forgotpassword', {emailID})
+    axios.post('http://localhost:5000/password/forgotpassword', {emailID})
     .then(response=>{
         console.log(response);
     })

@@ -532,7 +532,7 @@ option{
     margin: 2%;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 500px) {
     body{
         margin: 0;
         background-size: cover;
