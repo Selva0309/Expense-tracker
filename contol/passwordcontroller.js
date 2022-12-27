@@ -2,6 +2,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 const sgMail = require('@sendgrid/mail');
 const Uuid = require('../model/uuid-table');
+const User = require('../model/user');
+const bcrypt = require('bcrypt');
+
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 exports.forgotpassword = (req, res,next) =>{
@@ -34,7 +37,7 @@ sgMail
 exports.resetpassword = (req,res,next)=>{
   const id = req.params.id;
   console.log(id);
-  Uuid.findOne({where: {id}}).then(uuid=>{
+  Uuid.findOne({where: {id: id}}).then(uuid=>{
     if(uuid){
       uuid.update({ isactive: false});
       res.status(200).send(`<html>
@@ -44,12 +47,18 @@ exports.resetpassword = (req,res,next)=>{
                                       console.log('called')
                                   }
                               </script>
+                              
+                              <body>
+                                <section class="header-nav">
+                                    <h1>EXPENSE TRACKER</h1>
+                                </section>
 
-                              <form action="/password/updatepassword/${id}" method="get">
+                                <form class='form-control' action="/password/updatepassword/${id}" method="get">
                                   <label for="newpassword">Enter New password</label>
                                   <input name="newpassword" type="password" required></input>
-                                  <button>reset password</button>
+                                  <button class='btn'>Reset password</button>
                               </form>
+                              </body>
                           </html>`
                           )
       res.end()

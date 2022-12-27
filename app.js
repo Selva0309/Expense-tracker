@@ -42,9 +42,7 @@ app.post('/user/login', userroute);
 app.get('/purchase/premiummembership', purchaseroute)
 app.post('/purchase/updatetransactionstatus', purchaseroute)
 app.get('/premium/dashboard', premiumroute)
-app.post('/password/forgotpassword', passwordroute)
-app.use('/password/resetpassword/:id', passwordroute);
-app.use('/password/updatepassword/:resetpasswordid',passwordroute);
+app.use('/password', passwordroute)
 
 
 
