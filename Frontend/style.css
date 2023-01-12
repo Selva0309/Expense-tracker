@@ -291,7 +291,7 @@ option{
     font-weight: bolder;
 }
 
-.tracker-container h2, .dashboard-container h2, .monthly-report h2{
+.tracker-container h2, .dashboard-container h2, .monthly-report h2, .reports h2{
     color: #051937;
     background-color: #A8EB12;
     margin: 0;
@@ -481,7 +481,7 @@ option{
 }
 .dashboard-container{
     background-color: rgba(0, 0, 0, 0.5);
-    width: 35%;
+    width: 30%;
     height: 80vh;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
@@ -546,7 +546,7 @@ option{
 }
 
 .monthly-report{
-    width: 130%;
+    width: 110%;
     height: 30%;
     margin-right: 5%;
     margin-bottom: 5%;
@@ -562,6 +562,36 @@ option{
     flex-direction: row;
     justify-content: space-between;
     width: 95%;
+    font-size: 14px;
+}
+.report-container{
+    width: 30%;
+}
+.reports{
+
+    width: 25%;
+    height: 90%;
+    margin-right: 3%;
+    margin-left: 3%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+}
+.reports h2{
+    font-size: 16px;
+}
+
+.reports li{
+    margin: 3% auto;
+}
+.reports a{
+    text-decoration: underline;
+    color: #A8EB12;
+    
 }
 
 @media (max-width: 500px) {
@@ -572,7 +602,7 @@ option{
     }
     .full-container{
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
         flex-wrap: wrap;
     }
 

@@ -1,12 +1,13 @@
 const path = require('path');
 const bodyParser = require('body-parser');
 const sequelize = require('./utils/database');
-
+//models
 const User = require('./model/user');
 const Expenses = require('./model/Expenses');
 const Order = require ('./model/orders');
 const Uuid = require('./model/uuid-table');
-
+const Report = require('./model/reports');
+//routes
 const expenseroute = require('./routes/expenseroute');
 const userroute= require('./routes/user-route');
 const purchaseroute = require('./routes/purchase-route');
@@ -41,7 +42,7 @@ app.post('/user/signup', userroute);
 app.post('/user/login', userroute);
 app.get('/purchase/premiummembership', purchaseroute)
 app.post('/purchase/updatetransactionstatus', purchaseroute)
-app.get('/premium/dashboard', premiumroute)
+app.use('/premium', premiumroute)
 app.use('/password', passwordroute)
 
 
@@ -60,7 +61,8 @@ User.hasMany(Order);
 User.hasMany(Uuid);
 Uuid.belongsTo(User);
 
-
+Report.belongsTo(User);
+User.hasMany(Report);
 
 sequelize.sync()
 .then(result=>{

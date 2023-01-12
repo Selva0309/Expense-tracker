@@ -47,6 +47,77 @@ exports.resetpassword = (req,res,next)=>{
                                       console.log('called')
                                   }
                               </script>
+                              <style>
+                              @import url("http://fonts.googleapis.com/css2?family=Muli&display=swap");
+                              @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+                              @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+                              *{
+                                  box-sizing: border-box;
+                                  font-family: Muli, 'Calibri';
+                              }
+                              
+                              body{
+                                  background: rgb(2,0,36);
+                              background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(62,32,154,1) 0%, rgba(39,9,121,1) 47%, rgba(0,255,145,1) 98%) no-repeat;
+                                  object-fit: contain;
+                                  height: 100vh;                                
+                              }
+                              .form-control{
+                                width: 30%;
+                                height: 30%;
+                                margin: 10% auto;
+                                
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: space-around;
+                                background-color: rgba(0, 0, 0, 0.5);
+                                border-radius: 5px;
+                                box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+                                }
+                                .form-control input{
+                                    margin: 15px auto;
+                                    width: 95%;
+                                    height: 50px;
+                                    border: none;
+                                    border-bottom: 2px solid rgba(0,255,145,1);
+                                    background-color: inherit;
+                                    color: rgba(0,255,145,1);
+                                    font-family: inherit;
+                                }
+                                
+                                .form-control label{
+                                    margin: 5% auto;
+                                    align-items: center;
+                                    font-size: 16px;
+                                    color: rgb(29, 207, 130)
+                                }
+                                .header-nav h1{
+                                    font-size: 25px;
+                                    color: rgba(0,255,145,1);
+                                    margin-top: 2%;
+                                    margin-left: 10px;
+                                    letter-spacing: 2px;
+                                    font-family: Poppins;
+                                }
+                                .btn {
+                                    text-align: center;
+                                    width: 50%;
+                                    height: 2.5rem;
+                                    margin: 10% 25%;
+                                    justify-content: center;
+                                    align-items: center;
+                                    position: relative;
+                                    bottom: 10%;
+                                    display : inline-block;
+                                    background-color: rgb(29, 207, 130);
+                                    border: none;
+                                    border-radius: 5px;
+                                    font-weight: bold;
+                                    font-size: 16px;
+                                    cursor: pointer;
+                                }
+                                
+                              </style>
                               
                               <body>
                                 <section class="header-nav">

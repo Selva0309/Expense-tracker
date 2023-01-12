@@ -1,6 +1,8 @@
 const dashboardlist = document.querySelector('.user-list');
+const token = localStorage.getItem('token');
 window.addEventListener('DOMContentLoaded',()=>{
     getdashboard();
+    getreports();
     
 })
 
@@ -40,5 +42,32 @@ function getdashboard(){
         })
     });
       
+}
+function downloadreport(){
+    
+    axios.get('http://localhost:5000/premium/download', {headers: {"Authorization": token}})
+    .then(response =>{
+        console.log(response.data);
+        getreports();
+    })
+
+}
+
+function getreports(){
+    const reportContainer = document.querySelector('.report-list')
+    reportContainer.innerHTML=''; 
+    axios.get('http://localhost:5000/premium/getreport',{headers: {"Authorization": token}})
+    .then(response=>{
+        const reports = response.data.userReports;
+        console.log(reports);
+        reports.forEach(report =>{
+            const reportItem=document.createElement('li');
+            
+            
+            reportItem.innerHTML = `<a href=${report.filename}>${report.createdAt}</a>`
+            reportContainer.appendChild(reportItem);  
+
+        })
+    })
 }
 
