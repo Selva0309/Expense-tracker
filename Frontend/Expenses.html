@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <link rel = "stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <title>Expense Tracker</title>
 </head>
 
@@ -24,14 +25,15 @@
     </section> -->
     <button id="signout" onclick="signout()">Sign Out</button>
     <section class="full-container">
+       
     <section class="expense-container">
         
     <form class="container" id ='form' action="/expenses" method="POST">
          
         <div class="box">         
             <div>
-                <label>Expense Amount</label>
-                <input type="text" id ='amount' name="amount" required placeholder="Expense Amount"/>
+                <label>Amount</label>
+                <input type="text" id ='amount' name="amount" required placeholder="Amount"/>
             </div>
             <div >
                 <label >Description</label>
@@ -40,24 +42,33 @@
             <div >
                 <label>Category</label>
                 <select id ='category' name="category" required >
+                    <option value="Salary">Salary</option>
                     <option value="Education">Education</option>
                     <option value="Grocery">Grocery</option>
                     <option value="Travel">Travel</option>
+                    <option value="EMI">EMI</option>
                     <option value="Entertainment">Entertainment</option>
                     <option value="Health">Health</option>
-                </select>   
-            <button class = 'btn' type="button" onclick="addexpense()">Add Expense</button>
+                </select>
         </div>
+        <div>
+            <Label>Type</Label>
+            <select id ='type' name="type" required >
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+            </select>
+        </div>
+        
+        <button class = 'btn' type="button" onclick="addexpense()">Add</button>
+        
         </form>
         
     </section>
-    <button id="rzp-button" onclick="razorpay()">Buy Premium</button>
-        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-        <button id="premium-btn" onclick="premiumfeatures()">Premium Features</button>
-        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
     <section class="tracker-container">
-        <h2>List of Expenses</h2>
+        <h2>Income & Expenses</h2>
         <div class="expense-list-header">
+            <span class="type">TYPE</span>
             <span class="category">CATEGORY</span>
             <span class="description">DESCRIPTION</span>
             <span class="amount">AMOUNT</span>
@@ -65,12 +76,19 @@
         <ul class="expense-list">
 
         </ul>
+    
+        <div class ="pagination" id="pagination">
+        </div>
     </section>
+    <button id="rzp-button" onclick="razorpay()">Buy Premium</button>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <button id="premium-btn" onclick="premiumfeatures()">Premium Features</button>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
     
 </section>
     
 </body>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script src="expense-script.js"></script>
 </html>

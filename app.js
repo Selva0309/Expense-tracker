@@ -31,17 +31,17 @@ app.set('views', 'views');
 app.use(cors());
 
 
+app.use('/expenses', expenseroute);
+// app.get('/expenselist', expenseroute);
+// app.post('/expenses', expenseroute);
+// app.post('/delete-expense', expenseroute);
+app.use('/user', userroute);
+// app.post('/user/signup', userroute);
+// app.post('/user/login', userroute);
 
-app.get('/expenselist', expenseroute);
-app.post('/expenses', expenseroute);
-app.post('/edit-expense', expenseroute);
-app.post('/update-expense', expenseroute);
-app.post('/delete-expense', expenseroute);
-
-app.post('/user/signup', userroute);
-app.post('/user/login', userroute);
-app.get('/purchase/premiummembership', purchaseroute)
-app.post('/purchase/updatetransactionstatus', purchaseroute)
+app.use('/purchase', purchaseroute);
+// app.get('/purchase/premiummembership', purchaseroute)
+// app.post('/purchase/updatetransactionstatus', purchaseroute)
 app.use('/premium', premiumroute)
 app.use('/password', passwordroute)
 

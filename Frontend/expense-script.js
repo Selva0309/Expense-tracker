@@ -1,4 +1,7 @@
+const pageContainer = document.getElementById('pagination');
 const expenselist = document.querySelector('.expense-list');
+const limit = 5;
+
 var premium = localStorage.getItem('premium');
 
 window.addEventListener('DOMContentLoaded',()=>{
@@ -12,12 +15,13 @@ function addexpense() {
     const amount = document.getElementById('amount').value;
     const description = document.getElementById('description').value;
     const category = document.getElementById('category').value;
+    const type = document.getElementById('type').value;
     console.log(amount,description,category,token);
-    axios.post('http://localhost:5000/expenses',{description: description, category:category, amount:amount},{headers: {"Authorization": token}})
+    axios.post('http://localhost:5000/expenses/addexpense',{description: description, category:category, type: type, amount:amount},{headers: {"Authorization": token}})
     .then((response)=>{
         message = response.data.message;
         notifyUser(message);
-        showexpense();
+        showexpense(1);
     })
 
 }
@@ -36,44 +40,89 @@ function notifyUser(message) {
             },3500)
 }
 
-function showexpense(){
+function showexpense(pgNum){
     const token = localStorage.getItem('token');
-    axios.get('http://localhost:5000/expenselist', {headers: {"Authorization": token}})
+    axios.get('http://localhost:5000/expenses/expenselist', {headers: {"Authorization": token}})
     .then((response)=>{
        let expenses = response.data.result;
+       let totalitems = expenses.length;
+       
        console.log(expenses);
-       if(expenses.length==0){
+       if(totalitems==0){
         expenselist.innerHTML=`<p>There is no expense to display</p>`
        } else {
        expenselist.innerHTML='';
-       expenses.forEach(expense => {
-        const id = expense.id;
-        const description = expense.description;
-        const category = expense.category;
-        const amount = expense.amount;
+       if(totalitems< limit) {
+        pageContainer.style = 'display: none;'
+       }
+            page = pgNum || 1;
+            offset=((page-1)*limit);
+            currentPage =  page;
+            nextPage= page + 1;
+            previousPage = page - 1;
+            hasNextPage =  (limit * page)<totalitems;
+            hasPreviousPage= (page > 1);
+
+            for (let i=offset; (i<Math.min((offset+limit),totalitems)); i++) {
+                const id = expenses[i].id;
+                const description = expenses[i].description;
+                const category = expenses[i].category;
+                const amount = expenses[i].amount;
+                const type = expenses[i].type;
+                console.log(id, description, category, amount, type);
         
-        let expenseitem = document.createElement('li');
-        expenseitem.classList.add('expense-item');
-        expenseitem.setAttribute('id', `${id}`)
-        expenseitem.innerHTML=`
-        <div class='details'>
-            <div class= 'category'> ${category}</div>
-            <div class='description'> ${description}</div>
-            <div class='amount'>${amount}</div>
-        </div>
-        <div class= 'button'>
-            <button class='del-btn' type='button' alt='delete expenses'><i class="fa fa-trash" onclick='deleteexpense(${id})' ></i></button>
-        </div> 
-        `        
-        expenselist.appendChild(expenseitem);
-       });
-    }
+                let expenseitem = document.createElement('li');
+                if(type=='Income'){
+                    expenseitem.classList.add('income-item');    
+                }else{
+                expenseitem.classList.add('expense-item');
+                }
+                expenseitem.setAttribute('id', `${id}`)
+                expenseitem.innerHTML=`
+                <div class='details'>
+                    <div class='type'> ${type}</div>
+                    <div class= 'category'> ${category}</div>
+                    <div class='description'> ${description}</div>
+                    <div class='amount'>${amount}</div>
+                </div>
+                <div class= 'button'>
+                    <button class='del-btn' type='button' alt='delete'><i class="fa fa-trash" onclick='deleteexpense(${id})' ></i></button>
+                </div> 
+                `        
+                expenselist.appendChild(expenseitem);
+       };
+            pageContainer.innerHTML='';     
+            pageBtn = document.createElement('div');
+            pageBtn.classList.add('page-btn');
+            if ((hasPreviousPage) && (hasNextPage)) {
+                pageBtn.innerHTML = `
+                <button class='pg-btn-small' onclick='showexpense(${previousPage})'></button>
+                <button class='pg-btn-big' onclick='showexpense(${currentPage})'></button>
+                <button class='pg-btn-small' onclick='showexpense(${nextPage})'></button> 
+                `;
+            } else if ((hasPreviousPage) && (!hasNextPage)){
+                
+                pageBtn.innerHTML = `
+                <button class='pg-btn-small' onclick='showexpense(${previousPage})'></button>
+                <button class='pg-btn-big' onclick='showexpense(${currentPage})'></button>
+                `;
+
+            } else if ((!hasPreviousPage) && (hasNextPage)) {
+                
+                pageBtn.innerHTML = `
+                <button class='pg-btn-big'onclick='showexpense(${currentPage})'></button>
+                <button class='pg-btn-small'onclick='showexpense(${nextPage})'></button> 
+                `;
+            }
+           pageContainer.appendChild(pageBtn);
+              
+            }   
     })
-}
+} 
 
 function deleteexpense(id){
     const token = localStorage.getItem('token');
-    axios.post('http://localhost:5000/delete-expense',{expenseId: id}, {headers: {"Authorization": token}})
+    axios.post('http://localhost:5000/expenses/delete-expense',{expenseId: id}, {headers: {"Authorization": token}})
     .then((response)=>{
         message = response.data.message;
         notifyUser(message);

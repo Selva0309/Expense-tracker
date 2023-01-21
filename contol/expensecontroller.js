@@ -9,11 +9,13 @@ exports.addexpense = (req,res,next)=>{
     const description = req.body.description;
     const category = req.body.category;
     const amount = req.body.amount;
-    console.log(description,category,amount);
+    const type = req.body.type;
+    // console.log(description,category,amount);
     req.user.createExpense({
     description: description,
     category: category,
-    amount: amount
+    amount: amount,
+    type: type
     })
     .then(result =>{
     console.log('Created expense');
@@ -21,12 +23,7 @@ exports.addexpense = (req,res,next)=>{
     }).catch(err=>console.log(err))
 };
 
-exports.getindex = (req,res,next)=>{
-    res.render('main',{
-        pageTitle: 'Expense Tracker',
-        path: '/'
-    })
-};
+
 
 exports.expenselist = (req,res,next)=>{
     console.log("Expense page loaded")
@@ -42,20 +39,7 @@ exports.expenselist = (req,res,next)=>{
     
 };
 
-exports.geteditexpense = (req,res,next)=> {
-    const expenseID = req.body.expenseId;
-    console.log(expenseID);
-    Expenses.findAll({where : {id : expenseID}})
-    .then(expenses=>{
-            console.log(expenses)
-            res.render('edit-expense', {
-            pageTitle: 'Editing the expense',
-            prods: expenses[0],
-            path : '/expense-edit'
-        })
-    }) 
 
-}
 
 exports.updateexpense=(req,res,next) =>{
     const updatedDescription = req.body.description;

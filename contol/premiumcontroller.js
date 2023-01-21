@@ -1,7 +1,7 @@
 const User = require('../model/user');
 const Expenses = require('../model/Expenses');
 const Report = require('../model/reports');
-const { Model, DATE } = require('sequelize');
+const { Model, DATE, where } = require('sequelize');
 const sequelize = require('../utils/database');
 const AWS = require('aws-sdk');
 const dotenv = require('dotenv');
@@ -10,9 +10,11 @@ dotenv.config();
 exports.getdashboard = async (req,res,next) =>{
     try{
     const leaderboardUsers = await User.findAll({
+        
         attributes: ['id', 'name', [sequelize.fn('sum', sequelize.col('expenses.amount')),'total_cost']],
         include: [
-            { model: Expenses, 
+            { model: Expenses,
+                  
                 attributes:[]
             }],
         group: ['User.id'],
