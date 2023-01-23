@@ -14,7 +14,7 @@ exports.getdashboard = async (req,res,next) =>{
         attributes: ['id', 'name', [sequelize.fn('sum', sequelize.col('expenses.amount')),'total_cost']],
         include: [
             { model: Expenses,
-                  
+                where: {type:'Expense'},  
                 attributes:[]
             }],
         group: ['User.id'],

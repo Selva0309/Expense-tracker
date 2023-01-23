@@ -40,24 +40,61 @@
     <section class="report-container">
         <div class="monthly-report">
             <h2>Monthly Report</h2>
-            <div class="monthly-header">
-                <span class="date">Date</span>
-                <span class="description">DESCRIPTION</span>
-                <span class="category">CATEGORY</span>
-                <span class="amount">EXPENSE AMOUNT</span>
+            <div class="month-year">
+                <label>Select Month & Year</label>
+                <form class="month-container">
+                <select name="month" id="month">
+                    <option value="1" selected>January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option> 
+                </select>
+                <select name="Year" id="year">
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023" selected>2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                </select>
+                <button class = 'btn' type="button" onclick="getmonthlyreport()">View</button>
+            </form>
             </div>
-            <ul class="monthly-expense-list">
-
-            </ul>
+            <div class="overall-progress">
+                <!-- <div class="progress-container">
+                    <div role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="--value:100"></div>
+                    <h4>Income</h4>
+                </div>
+                <div class="progress-container">
+                    <div role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="--value:100"></div>
+                    <h4>Expense</h4>
+                </div>
+                <div class="progress-container">
+                    <div role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="--value:100"></div>
+                    <span>25000</span>
+                    <h4>Savings</h4>
+                </div> -->
+            </div>    
+            <div class="Expense-progress">
+                
+            </div>
 
 
         </div>
-        <div class="monthly-report">
+        <div class="yearly-report">
             <h2>Yearly Report</h2>
-            <div class="monthly-header">                
-                <span class="description">Month</span>
-                <span class="category">Category</span>
+            <div class="yearly-header">                
+                <span class="description">Year</span>
+                <span class="amount">Income</span>
                 <span class="amount">Expense</span>
+                <span class="amount">Savings</span>
                 
             </div>
             <ul class="yearly-expense-list">

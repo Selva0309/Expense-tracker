@@ -1,13 +1,13 @@
 const pageContainer = document.getElementById('pagination');
 const expenselist = document.querySelector('.expense-list');
-const limit = 5;
+const limit = localStorage.getItem('limit') || 3;
 
 var premium = localStorage.getItem('premium');
 
 window.addEventListener('DOMContentLoaded',()=>{
     checkpremium();
-    showexpense();
-    
+    showexpense(1);
+    document.getElementById('pagelimit').value = limit;
 })
 
 function addexpense() {
@@ -40,36 +40,32 @@ function notifyUser(message) {
             },3500)
 }
 
-function showexpense(pgNum){
+function showexpense(page){
     const token = localStorage.getItem('token');
-    axios.get('http://localhost:5000/expenses/expenselist', {headers: {"Authorization": token}})
+    axios.get('http://localhost:5000/expenses/expenselist', {headers: {"Authorization": token,'page':page, 'limit': limit }})
     .then((response)=>{
+        console.log(response);
        let expenses = response.data.result;
        let totalitems = expenses.length;
        
-       console.log(expenses);
+    //    console.log(expenses);
        if(totalitems==0){
         expenselist.innerHTML=`<p>There is no expense to display</p>`
        } else {
        expenselist.innerHTML='';
-       if(totalitems< limit) {
-        pageContainer.style = 'display: none;'
-       }
-            page = pgNum || 1;
-            offset=((page-1)*limit);
-            currentPage =  page;
-            nextPage= page + 1;
-            previousPage = page - 1;
-            hasNextPage =  (limit * page)<totalitems;
-            hasPreviousPage= (page > 1);
-
-            for (let i=offset; (i<Math.min((offset+limit),totalitems)); i++) {
-                const id = expenses[i].id;
-                const description = expenses[i].description;
-                const category = expenses[i].category;
-                const amount = expenses[i].amount;
-                const type = expenses[i].type;
-                console.log(id, description, category, amount, type);
+       currentPage =  response.data.currentPage;
+       hasNextPage = response.data.hasNextPage;
+       hasPreviousPage= response.data.hasPreviousPage;
+       nextPage= response.data.nextPage;
+       previousPage= response.data.previousPage;;
+       lastPage =  response.data.lastPage;
+            expenses.forEach(expense => {
+                const id = expense.id;
+                const description = expense.description;
+                const category = expense.category;
+                const amount = expense.amount;
+                const type = expense.type;
+                // console.log(id, description, category, amount, type);
         
                 let expenseitem = document.createElement('li');
                 if(type=='Income'){
@@ -90,28 +86,28 @@ function showexpense(pgNum){
                 </div> 
                 `        
                 expenselist.appendChild(expenseitem);
-       };
+       });
             pageContainer.innerHTML='';     
             pageBtn = document.createElement('div');
             pageBtn.classList.add('page-btn');
             if ((hasPreviousPage) && (hasNextPage)) {
                 pageBtn.innerHTML = `
-                <button class='pg-btn-small' onclick='showexpense(${previousPage})'></button>
-                <button class='pg-btn-big' onclick='showexpense(${currentPage})'></button>
-                <button class='pg-btn-small' onclick='showexpense(${nextPage})'></button> 
+                <button class='pg-btn-small' onclick='showexpense(${previousPage})'>${previousPage}</button>
+                <button class='pg-btn-big' onclick='showexpense(${currentPage})'>${currentPage}</button>
+                <button class='pg-btn-small' onclick='showexpense(${nextPage})'>${nextPage}</button> 
                 `;
             } else if ((hasPreviousPage) && (!hasNextPage)){
                 
                 pageBtn.innerHTML = `
-                <button class='pg-btn-small' onclick='showexpense(${previousPage})'></button>
-                <button class='pg-btn-big' onclick='showexpense(${currentPage})'></button>
+                <button class='pg-btn-small' onclick='showexpense(${previousPage})'>${previousPage}</button>
+                <button class='pg-btn-big' onclick='showexpense(${currentPage})'>${currentPage}</button>
                 `;
 
             } else if ((!hasPreviousPage) && (hasNextPage)) {
                 
                 pageBtn.innerHTML = `
-                <button class='pg-btn-big'onclick='showexpense(${currentPage})'></button>
-                <button class='pg-btn-small'onclick='showexpense(${nextPage})'></button> 
+                <button class='pg-btn-big'onclick='showexpense(${currentPage})'>${currentPage}</button>
+                <button class='pg-btn-small'onclick='showexpense(${nextPage})'>${nextPage}</button> 
                 `;
             }
            pageContainer.appendChild(pageBtn);
@@ -192,4 +188,10 @@ function getdashboard(){
     .then(response=>{
         console.log(response);
     })
+}
+
+function setlimit(){
+    const limit = document.getElementById('pagelimit').value;
+    localStorage.setItem('limit', limit);
+    window.location.reload();
 }

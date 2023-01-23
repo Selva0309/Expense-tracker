@@ -1,9 +1,10 @@
 
+const { group } = require('console');
 const path = require('path');
 const { where } = require('sequelize');
 const Expenses = require('../model/Expenses');
 const User = require('../model/user');
-
+const sequelize = require('../utils/database');
 
 exports.addexpense = (req,res,next)=>{
     const description = req.body.description;
@@ -23,20 +24,39 @@ exports.addexpense = (req,res,next)=>{
     }).catch(err=>console.log(err))
 };
 
+exports.countExpense= (req,res,next)=>{
+    try{
+        req.user.getExpenses().then(expenses=>{
+            numExpenses = expenses.length;
+            next();
+        }).catch(err => {
+            throw new Error(err)
+        })
+    } catch(err){
+        return res.status(401).json({success: false})
+    }
+}
 
 
 exports.expenselist = (req,res,next)=>{
     console.log("Expense page loaded")
-    req.user.getExpenses().then(expenses =>{
-        
-        // res.render('expenses',{
-        //     prods: expenses,
-        //     pageTitle: 'Expenses',
-        //     path: '/expenselist'
-        // });
-        res.status(200).json({result: expenses});
-    }).catch(err => console.log(err));
+    const page = parseInt(req.header('page'));
+    const limit = parseInt(req.header('limit'));
     
+    console.log(page, limit);
+    req.user.getExpenses({offset:((page-1)*limit),
+        limit : limit,
+        subQuery:false}).then(expenses =>{
+
+        res.status(200).json({result: expenses, 
+            currentPage: page,
+            hasNextPage: limit * page <numExpenses,
+            hasPreviousPage: page > 1,
+            nextPage: page + 1,
+            previousPage: page - 1,
+            lastPage: Math.ceil(numExpenses / limit)});
+    }).catch(err => console.log(err));
+
 };
 
 
@@ -71,3 +91,19 @@ exports.deleteexpense = (req,res,next) =>{
     }
     ).catch(err=>console.log(err))
 }
+
+exports.monthlyreport = async (req, res, next)=>{
+    try{
+        const monthlyexpenses = await req.user.getExpenses({
+            attributes: ['id', 'category', 'type', 'amount', [sequelize.fn('YEAR', sequelize.col('expenses.createdAt')),'year'],
+            [sequelize.fn('MONTH', sequelize.col('expenses.createdAt')),'month']],
+            order: [[sequelize.col('type'), "DESC"]]
+            
+        })
+        res.status(201).json(monthlyexpenses);
+        } catch(err) {
+            console.log(err)
+        }
+            
+    }
+    

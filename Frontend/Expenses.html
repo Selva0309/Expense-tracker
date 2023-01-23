@@ -79,6 +79,12 @@
     
         <div class ="pagination" id="pagination">
         </div>
+        <form class="limit">
+        <label>Rows per Page</label>
+        <input id ='pagelimit' name="pagelimit" type="number" min="0" max="100"> 
+        <button class='set-btn' type="button" onclick="setlimit()">Set</button>    
+        </form>
+
     </section>
     <button id="rzp-button" onclick="razorpay()">Buy Premium</button>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
