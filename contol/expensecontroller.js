@@ -48,13 +48,16 @@ exports.expenselist = (req,res,next)=>{
         limit : limit,
         subQuery:false}).then(expenses =>{
 
-        res.status(200).json({result: expenses, 
-            currentPage: page,
-            hasNextPage: limit * page <numExpenses,
-            hasPreviousPage: page > 1,
-            nextPage: page + 1,
-            previousPage: page - 1,
-            lastPage: Math.ceil(numExpenses / limit)});
+        res.status(200).json({result: expenses,
+            pages: {
+                FirstPage: { condition: page>2, value: 1, name: 'First'}, 
+                PreviousPage: {condition:page > 1, value: page - 1, name: page - 1},
+                currentPage: { condition: page, value: page, name: page},
+                NextPage: {condition:limit * page <numExpenses, value: page+1, name:page+1},                
+                lastPage: { condition: (page+1)<Math.ceil(numExpenses / limit), value: Math.ceil(numExpenses / limit), name: 'Last'},
+            }
+            
+        });
     }).catch(err => console.log(err));
 
 };

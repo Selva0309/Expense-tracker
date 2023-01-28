@@ -44,7 +44,7 @@ function showexpense(page){
     const token = localStorage.getItem('token');
     axios.get('http://localhost:5000/expenses/expenselist', {headers: {"Authorization": token,'page':page, 'limit': limit }})
     .then((response)=>{
-        console.log(response);
+        // console.log(response);
        let expenses = response.data.result;
        let totalitems = expenses.length;
        
@@ -53,13 +53,9 @@ function showexpense(page){
         expenselist.innerHTML=`<p>There is no expense to display</p>`
        } else {
        expenselist.innerHTML='';
-       currentPage =  response.data.currentPage;
-       hasNextPage = response.data.hasNextPage;
-       hasPreviousPage= response.data.hasPreviousPage;
-       nextPage= response.data.nextPage;
-       previousPage= response.data.previousPage;;
-       lastPage =  response.data.lastPage;
-            expenses.forEach(expense => {
+       let Pages =  response.data.pages;
+    //    console.log(Pages);
+        expenses.forEach(expense => {
                 const id = expense.id;
                 const description = expense.description;
                 const category = expense.category;
@@ -87,31 +83,19 @@ function showexpense(page){
                 `        
                 expenselist.appendChild(expenseitem);
        });
-            pageContainer.innerHTML='';     
-            pageBtn = document.createElement('div');
-            pageBtn.classList.add('page-btn');
-            if ((hasPreviousPage) && (hasNextPage)) {
-                pageBtn.innerHTML = `
-                <button class='pg-btn-small' onclick='showexpense(${previousPage})'>${previousPage}</button>
-                <button class='pg-btn-big' onclick='showexpense(${currentPage})'>${currentPage}</button>
-                <button class='pg-btn-small' onclick='showexpense(${nextPage})'>${nextPage}</button> 
-                `;
-            } else if ((hasPreviousPage) && (!hasNextPage)){
-                
-                pageBtn.innerHTML = `
-                <button class='pg-btn-small' onclick='showexpense(${previousPage})'>${previousPage}</button>
-                <button class='pg-btn-big' onclick='showexpense(${currentPage})'>${currentPage}</button>
-                `;
-
-            } else if ((!hasPreviousPage) && (hasNextPage)) {
-                
-                pageBtn.innerHTML = `
-                <button class='pg-btn-big'onclick='showexpense(${currentPage})'>${currentPage}</button>
-                <button class='pg-btn-small'onclick='showexpense(${nextPage})'>${nextPage}</button> 
-                `;
+            pageContainer.innerHTML='';
+            
+            for (let page in Pages){
+                if(Pages[page].condition){
+                    pageBtn = document.createElement('div');
+                    pageBtn.classList.add('page-btn');
+                    pageBtn.innerHTML = `
+                    <button class='${page}' onclick='showexpense(${Pages[page].value})'>${Pages[page].name}</button>`
+                    pageContainer.appendChild(pageBtn);
+                    // console.log('Page added');
+                }
             }
-           pageContainer.appendChild(pageBtn);
-              
+            
             }   
     })
 } 

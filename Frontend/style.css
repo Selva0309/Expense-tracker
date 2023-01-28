@@ -35,7 +35,7 @@ background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(62,32,154,1) 0%, rgba
 .signup-container, .forgetpassword-container{
     margin-top: 100px;
     width: 30%;
-    height: 68vh;
+    height: auto;
     margin: 40px auto;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
     display: none;
@@ -50,6 +50,7 @@ background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(62,32,154,1) 0%, rgba
     text-align: center;
     font-size: 14px;
     padding: 14px;
+    margin-top: 10%;
     color: rgb(29, 207, 130);
 }
 
@@ -78,10 +79,11 @@ background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(62,32,154,1) 0%, rgba
 .container-head h2 {
     background-color: #A8EB12;
     margin: 0 2px;
-    padding: 18px;
+    padding: 10px;
     font-size: 18px;
     height: auto;
-    border-radius: 50%;
+    width: auto;
+    border-radius: 5px;
     display: inherit;
     
 }
@@ -129,7 +131,7 @@ background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(62,32,154,1) 0%, rgba
     box-shadow: 10px 10px 14px 1px rgb(0 0 0 / 20%);
 }
 .existing-user{
-    margin: 5px auto;
+    margin: 0 auto;
     color: rgb(29, 207, 130);
     text-align: center;
     justify-content: center;
@@ -201,8 +203,8 @@ li {
     width: auto;
     margin: 0;
     position: fixed;
-    bottom: 10px;
-    right: 5px;
+    top: 15px;
+    right: 10px;
     display: none;
     font-family: inherit;
     font-size: 14px;
@@ -229,8 +231,8 @@ li {
 
 .expense-container{
     
-    width: 30%;
-    height: 70vh;
+    width: 32%;
+    height: auto;
     margin-left: 5%;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -265,7 +267,7 @@ li {
 .full-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: nowrap;
     margin: 2% auto;
     
@@ -301,6 +303,7 @@ option{
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bolder;
+    border-radius: 5px 5px 0 0;
 }
 
 .dashboard-container h2{
@@ -312,6 +315,8 @@ option{
     flex-direction: column;
     width: 98%;
     list-style: none;
+    margin-top: 1%;
+    margin-bottom: 3%;
     margin-left: auto;
     margin-right: auto;
     align-items: center;
@@ -342,10 +347,10 @@ option{
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: nowrap;
-    margin-top: 1%;
+    margin-top: 2%;
     width: 98%;
     position: absolute;
-    top: 18%;
+    top:15%;
 }
 
 .month-year label{
@@ -391,9 +396,9 @@ option{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 90%;
     color: #051937;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     margin-left: 5%;
     text-align: left;
@@ -408,6 +413,10 @@ option{
 }
 .details .amount{
     width: 5%;
+    text-align: right;
+}
+.details .description{
+    width: 20%;
 }
 .details .button{
     width: 1%;
@@ -418,7 +427,7 @@ option{
     width: 10%;
     align-items: center;
     justify-content: flex-end;
-    margin-left: 10%;
+    margin-left: 30%;
 }
 .fa-trash{
     font-size: 18px;
@@ -441,32 +450,29 @@ option{
 }
 
 #rzp-button, #premium-btn{
-    background-color: rgba(0,255,145,1);
+    background-color: #A8EB12;
     color: #051937;
     width: 20%;
-    height: 50px;
+    height: auto;
     font-weight: bold;
     cursor: pointer;
-    border: none;
+    border: 2px solid rgb(29, 207, 130); 
     font-size: 16px;
-    padding: 2px;
-    position: absolute;
-    bottom: 2%;
-    left: 40%;
+    padding: 1% 2%;
     border-radius: 5px;
 }
 
 #rzp-button:hover, #premium-btn:hover{
-    background-color: #A8EB12;
-    color: #051937;
+    
     box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgba(117, 23, 105, 0.911);
+    color: rgb(29, 207, 130);
 }
 
 #premium-btn {
     display: none;
-    position: absolute;
-    bottom: 5%;
-    right: 40%;
+    margin: 2% auto;
+    width: auto;
 }
 
 .header-nav h4{
@@ -514,27 +520,30 @@ option{
 }
 
 #signout{
-    background-color: rgba(0,255,145,0.5);
-    color: #051937;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: auto;
+    color: rgba(0,255,145,1);
     font-weight: bolder;
     border-radius: 5px;
     padding: 10px;
+    margin-right: 2%;
+    border: 2px solid #051937;
     position: absolute;
-    top: 5%;
     right: 2%;
-}
-#download{
-    background-color: rgba(0,255,145,0.5);
-    color: #051937;
-    font-weight: bolder;
-    border-radius: 5px;
-    padding: 10px;
-    position: absolute;
     top: 5%;
-    right: 15%;
+}
+#download, #back{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: auto;
+    color:#A8EB12;
+    font-weight: bolder;
+    border-radius: 5px; 
+    padding: 10px;
+    margin-right: 2%;
+    border: 2px solid #A8EB12;
 
 }
-#signout:hover, #download:hover{
+#signout:hover, #download:hover, #back:hover{
     background-color: rgba(255, 0, 0, 0.7);
     color: #fff;
     cursor: pointer;
@@ -676,34 +685,37 @@ option{
 
 #pagination{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     position: absolute;
     bottom: 5%;
     left: 45%;
     text-align: center;
     align-items: center;
     margin: 0 auto;
+    width: auto;
 }
 
-.pg-btn-big{
+.currentPage{
     font-size: 16px;
     font-family: inherit;
     font-weight: bolder;
     width: 25px;
     height: 25px;
+    margin: 1%;
     background: none;
     color: rgba(137, 230, 17, 0.61);
     border: none;
-    border-bottom: 4px solid rgba(236, 222, 24, 0.685);
+    border-bottom: 2px solid rgba(236, 222, 24, 0.685);
     border-radius: 2px;
     text-align: center;
     align-items: center;
 }
 
-.pg-btn-small{
+.FirstPage, .NextPage, .PreviousPage, .lastPage{
     font-size: 10px;
     height: 3px;
-    width: 10px;
+    width: auto;
+    margin:1%;
     font-family: inherit;
     font-weight: bold;
     background: none;
@@ -713,10 +725,11 @@ option{
     text-align: center;
     align-items: center;
 }
-.pg-btn-big:hover,.pg-btn-small:hover {
+.page-btn:hover {
     background: rgba(0,255,145,0.5);
     color: rgb(2,0,36);
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: bolder;
     cursor: pointer;
 }
 
@@ -781,14 +794,15 @@ option{
 
   }
   .progress-container h4{
-    background:#A8EB12;
+    background:rgba(0,255,145,0.5);
     color: #051937;
     border: none;
     text-align: center;
-    padding: 2%;
+    padding: 6%;
+    font-weight: bold;
 }
 .progress-container span{
-    color:#A8EB12;
+    color:#ebe712;
     border: none;
     text-align: center;
     margin-top: 3%;
@@ -819,6 +833,7 @@ option{
     align-items: center;
     text-align: left;
     
+    
 }
 
 .yearly-expense-list .details .year {
@@ -832,7 +847,7 @@ option{
     width: 25%;
 }
 .yearly-expense-list .details .savings{
-    width: 3%;
+    width: 10%;
 } 
 
 .limit{
@@ -840,9 +855,6 @@ option{
     flex-direction: row;
     justify-content: flex-end;
     margin: 2%;
-    position: absolute;
-    bottom: 10%;
-    right: 2%;
 }
 .limit input{
     width: 15%;
@@ -869,4 +881,189 @@ option{
 .set-btn:hover{
     background: #A8EB12;
     cursor: pointer;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+/* For Mobile Phones */
+@media only screen and (max-width: 768px) {
+    body{
+        height: 100%;
+    }
+    .header-nav{
+        width: 100%;
+        height: 30px;
+    }
+    .header-nav h1{
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .signup-container, .login-container{
+        width: 80%;
+        margin-top: 14%;
+        position: relative;
+    }
+    .container-head{
+        width: 80%;
+        position: absolute;
+        top: -16%;
+        left: 0%;
+    }
+    .container-head h2{
+        font-size: 14px;
+        margin-left: 0;
+        position: absolute;
+        left: 0;
+        top: 5%;
+    }
+    .media{
+        position: absolute;
+        right: 2%;
+        top: 0%;
+    }
+    .form-control {
+        font-size: 11px;
+    }
+    .login-btn {
+        font-size: 14px;
+        margin-bottom: 2%;
+    }
+    #signout{
+        font-size: 14px;
+        padding: 1%;
+        margin-top: 1%;
+    }
+    
+    .full-container{
+        flex-direction: column;
+        position: relative;
+    }
+    .expense-container {
+        width: 80%;
+        height: auto;
+        margin: 10% auto;
+    }
+
+    .tracker-container{
+        width: 95%;
+        margin: 5% auto;
+        position: relative;
+    }
+
+    #rzp-button, #premium-btn {
+        width: auto;
+        height: auto;
+        padding: 2% 5%;
+        margin: 2% auto;
+        
+    }
+
+    .tracker-container h2 {
+        font-size: 20px;
+        padding: 1% 2%;
+        border-radius: 5px 5px 0 0;
+    }
+    .expense-list-header{
+        font-size: 14px;
+        width: 95%;
+        
+    }
+    .income-item, .expense-item{
+        width: 100%;
+        margin-top: 1%;
+    }
+
+    .details{
+        font-size: 12px;
+        
+    }
+    .limit{
+        font-size: 13px;
+    }
+    #pagination{
+        position: absolute;
+        bottom: -10%;
+        margin: 2% auto;
+    }
+
+    .btn{
+        height: auto;
+        padding: 2%;
+    }
+    .dashboard-container{
+        width: 90%;
+        height: auto;
+        margin: 10% auto;
+    }
+    .dashboard-container h2, .report-container h2{
+        font-size: 16px;
+        
+        
+    }
+    #download{
+        right: 45%;
+        padding: 1%;
+        top: 6%;
+    }
+    .report-container{
+        width: 98%;
+        height: auto;
+    }
+    .monthly-report{
+        width: 95%;
+        height: auto;
+        margin: 2% auto;
+    }
+    .month-year{
+        width: 95%;
+        font-size: 12px;
+        margin: 1% auto;
+    }
+    .month-container{
+        margin-right: 4%;
+    }
+
+    .overall-progress{
+        margin-top: 20%;
+        font-size: 14px;
+    }
+
+    .progress-container span{
+        font-size: 16px;
+        margin-top: 5%;
+    }
+
+    div[role="progressbar"] {
+        --size: 4.5rem;
+    }
+
+    .yearly-report{
+        width: 95%;
+        height: 40%;
+        margin: 10% auto;
+    }
+    .yearly-header{
+        margin-top: 8%;
+        width: 95%;
+    }
+    .yearly-expense-list{
+        margin-top: 18%;
+        width: 95%;
+    }
+
+    .reports {
+        margin-top: 35%;
+        margin-bottom: 10%;
+        width: 95%;
+    }
+
+    .buttons{
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
 }

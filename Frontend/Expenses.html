@@ -15,14 +15,7 @@
         <h1>EXPENSE TRACKER</h1>
     </section>
     <section class="notification-container"></section>
-    <!-- <section class="success-card">
-        <h2>Congratulations!!!</h2>
-        <p> You are a premim user now</p>
-    </section>
-    <section class = 'failure-card'>
-        <h2>Sorry!!!</h2>
-        <p> Something went wrong. Please try again</p>
-    </section> -->
+    
     <button id="signout" onclick="signout()">Sign Out</button>
     <section class="full-container">
        
@@ -60,6 +53,10 @@
         </div>
         
         <button class = 'btn' type="button" onclick="addexpense()">Add</button>
+        <button id="rzp-button" onclick="razorpay()">Buy Premium</button>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <button id="premium-btn" onclick="premiumfeatures()">Premium Features</button>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         
         </form>
         
@@ -73,23 +70,23 @@
             <span class="description">DESCRIPTION</span>
             <span class="amount">AMOUNT</span>
         </div>
+        <form class="limit">
+            <label>Number of Rows per Page</label>
+            <input id ='pagelimit' name="pagelimit" type="number" min="0" max="100"> 
+            <button class='set-btn' type="button" onclick="setlimit()">Set</button>    
+            </form>
         <ul class="expense-list">
 
         </ul>
-    
+        
         <div class ="pagination" id="pagination">
         </div>
-        <form class="limit">
-        <label>Rows per Page</label>
-        <input id ='pagelimit' name="pagelimit" type="number" min="0" max="100"> 
-        <button class='set-btn' type="button" onclick="setlimit()">Set</button>    
-        </form>
+        
+
+        
 
     </section>
-    <button id="rzp-button" onclick="razorpay()">Buy Premium</button>
-        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-        <button id="premium-btn" onclick="premiumfeatures()">Premium Features</button>
-        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
 
     
 </section>

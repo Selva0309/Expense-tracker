@@ -162,7 +162,7 @@ exports.updatepassword = (req, res) => {
                                   throw new Error(err);
                               }
                               user.update({ password: hash }).then(() => {
-                                  res.status(201).json({message: 'Successfuly update the new password'})
+                                res.status(200).json({message: "Password Updated successfully"})
                               })
                           });
                       });
