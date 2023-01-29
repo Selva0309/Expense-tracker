@@ -19,7 +19,7 @@ exports.addexpense = (req,res,next)=>{
     type: type
     })
     .then(result =>{
-    console.log('Created expense');
+    // console.log('Created expense');
     res.status(200).json({success:true, message:"Expense added successfully"})
     }).catch(err=>console.log(err))
 };
@@ -39,11 +39,11 @@ exports.countExpense= (req,res,next)=>{
 
 
 exports.expenselist = (req,res,next)=>{
-    console.log("Expense page loaded")
+    // console.log("Expense page loaded")
     const page = parseInt(req.header('page'));
     const limit = parseInt(req.header('limit'));
     
-    console.log(page, limit);
+    // console.log(page, limit);
     req.user.getExpenses({offset:((page-1)*limit),
         limit : limit,
         subQuery:false}).then(expenses =>{
@@ -89,7 +89,7 @@ exports.deleteexpense = (req,res,next) =>{
     
     
     .then(result=>{
-        console.log('removed expense')
+        // console.log('removed expense')
         res.status(200).json({success:true, message:"Expense deleted"})
     }
     ).catch(err=>console.log(err))

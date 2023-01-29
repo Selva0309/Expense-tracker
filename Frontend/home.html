@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login/Sign-Up</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     
     
 </head>
@@ -40,11 +40,11 @@
                 <label>Create Password</label>
                 <input type="password" id ='password' name="password" required placeholder="password"/>
             </div>
-            <button class="btn" type="button" onclick="signup()">Sign-Up</button>
+            <button class="btn" type="button" id="signup">Sign-Up</button>
                                  
         </form>
         <div class="existing-user">
-            <P>Already an existing User   <button class="login-btn" type="button" onclick="showloginpage()">Login</button> </P>
+            <P>Already an existing User   <button class="login-btn" type="button" id='showlogin'>Login</button> </P>
         </div>
     </section>
     
@@ -70,12 +70,12 @@
                 <input type="password" id ='userpassword' name="password" required placeholder="password"/>
                 
             </div>
-            <button class="btn" type="button" onclick="login()">Login</button>
+            <button class="btn" type="button" id='login'>Login</button>
                                  
         </form>
         <button class='forgot-btn'>Forgot Password?</button> 
         <div class="existing-user">
-            <P>Not an existing User   <button class="login-btn" type="button" onclick="showsignuppage()">Sign up</button> </P>
+            <P>Not an existing User   <button class="login-btn" type="button" id="showsignup">Sign up</button> </P>
         </div>
     </section>
 

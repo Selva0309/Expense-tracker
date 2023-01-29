@@ -1,6 +1,10 @@
 
 const logincontainer = document.querySelector(".login-container");
 const signupcontainer = document.querySelector(".signup-container");
+document.getElementById('signup').addEventListener('click',signup);
+document.getElementById('showlogin').addEventListener('click',showloginpage);
+document.getElementById('login').addEventListener('click',login);
+document.getElementById('showsignup').addEventListener('click',showsignuppage);
 
 function signup(){
 

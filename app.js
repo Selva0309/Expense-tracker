@@ -1,35 +1,54 @@
 const path = require('path');
+const fs = require('fs');
 const bodyParser = require('body-parser');
 const sequelize = require('./utils/database');
+var cors = require('cors');
+const morgan = require('morgan');
+const helmet = require('helmet');
+
 //models
 const User = require('./model/user');
 const Expenses = require('./model/Expenses');
 const Order = require ('./model/orders');
 const Uuid = require('./model/uuid-table');
 const Report = require('./model/reports');
+
 //routes
 const expenseroute = require('./routes/expenseroute');
 const userroute= require('./routes/user-route');
 const purchaseroute = require('./routes/purchase-route');
 const premiumroute = require('./routes/premium-route');
 const passwordroute = require('./routes/password')
-var cors = require('cors');
 
+
+const accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"), {flags: 'a'})
 
 
 const express = require('express');
 // const sequelize = require('./util/database');
 
 const app = express();
+
+
 app.use(express.static(path.join(__dirname,'Frontend')));
 
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.set('view engine', 'ejs');
-app.set('views', 'views');
 app.use(cors());
-
+// console.log(helmet.contentSecurityPolicy.getDefaultDirectives())
+app.use(
+    helmet.contentSecurityPolicy({
+      useDefaults: false,
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'https://unpkg.com/axios/dist/axios.min.js'","'https://checkout.razorpay.com/v1/checkout.js'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+      },
+    })
+  );
+app.use(morgan('combined', {stream: accessLogStream}));
 
 app.use('/expenses', expenseroute);
 // app.get('/expenselist', expenseroute);
