@@ -16,7 +16,7 @@ let msg = {
   from:'selva3010kkl@gmail.com', // Change to your verified sender
   subject: 'Forgot password link',
   text: 'and easy to do anywhere, even with Node.js',
-  html: `<a href="http://localhost:5000/password/resetpassword/${uuid}">Reset password</a>`,
+  html: `<a href="http://18.181.82.118/password/resetpassword/${uuid}">Reset password</a>`,
 }
 
 
