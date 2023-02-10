@@ -11,7 +11,7 @@ const UserAuth = require('../middleware/authentication');
 const premiumcontroller = require('../contol/premiumcontroller');
 
 
-router.get('/dashboard', premiumcontroller.getdashboard);
+router.get('/dashboard', UserAuth.authenticate, premiumcontroller.getdashboard);
 router.get('/download', UserAuth.authenticate, premiumcontroller.downloadreport)
 router.get('/getreport', UserAuth.authenticate, premiumcontroller.getreports)
 
