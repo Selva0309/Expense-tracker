@@ -17,7 +17,7 @@ exports.getdashboard = async (req,res,next) =>{
                 where: {type:'Expense'},  
                 attributes:[]
             }],
-        group: ['id'],
+        group: ['User.id'],
         order: [[sequelize.col('total_cost'), "DESC"]]
     })
     res.status(201).json(leaderboardUsers);
