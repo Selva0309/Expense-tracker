@@ -38,14 +38,8 @@ app.use(bodyParser.json());
 app.use(cors());
 // console.log(helmet.contentSecurityPolicy.getDefaultDirectives())
 app.use(
-    helmet.contentSecurityPolicy({
-      useDefaults: false,
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'https://unpkg.com/axios/dist/axios.min.js'","'https://checkout.razorpay.com/v1/checkout.js'"],
-        objectSrc: ["'none'"],
-        upgradeInsecureRequests: [],
-      },
+    helmet({
+      contentSecurityPolicy: false,
     })
   );
 app.use(morgan('combined', {stream: accessLogStream}));

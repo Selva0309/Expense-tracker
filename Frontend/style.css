@@ -25,11 +25,11 @@ background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(77,61,128,1) 0%, rgba
 
 .header-nav h1{
     font-size: 25px;
-    color: rgba(0,255,145,1);
+    color: #FEBE10;
     margin-left: 10px;
-    
-    letter-spacing: 2px;
-    font-family: Poppins;
+    letter-spacing: 4px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
 }
 
 .signup-container, .forgetpassword-container{
@@ -45,7 +45,26 @@ background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(77,61,128,1) 0%, rgba
     background-color: rgba(0, 0, 0, 0.5)
 }
 
-.signup-container h3, .login-container h3{
+.reset-container{
+    width: 30%;
+    height: auto;
+    margin: 40px auto;
+    padding: 2%;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+.reset-container input{
+    width: 80%;
+    margin: 1%;
+}
+.signup-container h3, .login-container h3, .reset-container h3{
     align-items: center;
     text-align: center;
     font-size: 14px;
@@ -554,6 +573,7 @@ option{
     padding: 10px;
     margin-right: 2%;
     border: none;
+    width: auto;
     
 
 }
@@ -631,7 +651,7 @@ option{
 
 .monthly-report{
     width: 115%;
-    height: 55%;
+    height: auto;
     margin-right: 5%;
     margin-bottom: 5%;
     display: flex;
@@ -902,6 +922,10 @@ option{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    position: absolute;
+    top: 1%;
+    right:1%;
+    width: 40%;
 }
 
 /* For Mobile Phones */
@@ -918,7 +942,7 @@ option{
         letter-spacing: 1px;
     }
 
-    .signup-container, .login-container{
+    .signup-container, .login-container, .reset-container{
         width: 80%;
         margin-top: 14%;
         position: relative;
