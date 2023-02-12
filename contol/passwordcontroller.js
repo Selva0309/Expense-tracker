@@ -19,7 +19,7 @@ let msg = {
   from:'selva3010kkl@gmail.com', // Change to your verified sender
   subject: 'Forgot password link',
   text: 'and easy to do anywhere, even with Node.js',
-  html: `<a href="http://localhost:3000/password/resetpassword/${uuid}">Reset password</a>`,
+  html: `<a href="http://52.196.64.49/password/resetpassword/${uuid}">Reset password</a>`,
 }
 
 
@@ -54,12 +54,12 @@ exports.resetpassword = (req,res,next)=>{
       //     <meta http-equiv="X-UA-Compatible" content="IE=edge">
       //     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       //     <title>Reset Password</title>
-      //     <link rel="stylesheet" href="http://localhost:3000/style.css">
+      //     <link rel="stylesheet" href="http://52.196.64.49/style.css">
       //     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       //     <script>
       //         function resetpassword(e){
       //             e.preventDefault();
-      //             axios.get('http://localhost:3000/)
+      //             axios.get('http://52.196.64.49/)
       //         }
       //     </script>
       // </head>

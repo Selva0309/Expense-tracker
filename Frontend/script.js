@@ -13,7 +13,7 @@ function signup(){
     const password = document.getElementById('password').value;
     console.log(name, email, password);
 
-    axios.post('http://localhost:3000/user/signup',{name: name, email:email, password:password})
+    axios.post('http://52.196.64.49/user/signup',{name: name, email:email, password:password})
     .then((response)=>{
         if(response.status==201){
         message = response.data.message;
@@ -64,7 +64,7 @@ function login(){
     const password = document.getElementById('userpassword').value;
     console.log(email, password);
 
-    axios.post('http://localhost:3000/user/login',{email:email, password:password})
+    axios.post('http://52.196.64.49/user/login',{email:email, password:password})
     .then((response) =>{
               
         message = response.data.message;
@@ -101,7 +101,7 @@ document.querySelector('.forgot-btn').addEventListener('click', forgotpasswordpa
 function sendEmail(){
     const emailID = document.getElementById('forgotemail').value;
     console.log(emailID)
-    axios.post('http://localhost:3000/password/forgotpassword', {emailID})
+    axios.post('http://52.196.64.49/password/forgotpassword', {emailID})
     .then(response=>{
         console.log(response);
         if(response.data.success){

@@ -14,7 +14,7 @@ function showexpensepage(){
 }
 
 function getdashboard(){
-    axios.get('http://localhost:3000/premium/dashboard')
+    axios.get('http://52.196.64.49/premium/dashboard')
     .then(response=>{
         console.log(response.data);
         const dashboarduserdata = response.data;
@@ -48,7 +48,7 @@ function getdashboard(){
 }
 function downloadreport(){
     
-    axios.get('http://localhost:3000/premium/download', {headers: {"Authorization": token}})
+    axios.get('http://52.196.64.49/premium/download', {headers: {"Authorization": token}})
     .then(response =>{
         console.log(response.data);
         getreports();
@@ -59,7 +59,7 @@ function downloadreport(){
 function getreports(){
     const reportContainer = document.querySelector('.report-list')
     reportContainer.innerHTML=''; 
-    axios.get('http://localhost:3000/premium/getreport',{headers: {"Authorization": token}})
+    axios.get('http://52.196.64.49/premium/getreport',{headers: {"Authorization": token}})
     .then(response=>{
         const reports = response.data.userReports;
         console.log(reports);
@@ -81,7 +81,7 @@ function getmonthlyreport(){
                         Savings: {total:0, percentage : 0}} 
     // console.log(month, year);
     overallcontainer.innerHTML='';
-    axios.get('http://localhost:3000/expenses/getmonthlyreport', {headers: {"Authorization": token}})
+    axios.get('http://52.196.64.49/expenses/getmonthlyreport', {headers: {"Authorization": token}})
     .then(response =>{
         console.log(response.data);
         const expense_data = response.data;

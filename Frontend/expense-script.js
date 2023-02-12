@@ -17,7 +17,7 @@ function addexpense() {
     const category = document.getElementById('category').value;
     const type = document.getElementById('type').value;
     console.log(amount,description,category,token);
-    axios.post('http://localhost:3000/expenses/addexpense',{description: description, category:category, type: type, amount:amount},{headers: {"Authorization": token}})
+    axios.post('http://52.196.64.49/expenses/addexpense',{description: description, category:category, type: type, amount:amount},{headers: {"Authorization": token}})
     .then((response)=>{
         message = response.data.message;
         notifyUser(message);
@@ -42,7 +42,7 @@ function notifyUser(message) {
 
 function showexpense(page){
     const token = localStorage.getItem('token');
-    axios.get('http://localhost:3000/expenses/expenselist', {headers: {"Authorization": token,'page':page, 'limit': limit }})
+    axios.get('http://52.196.64.49/expenses/expenselist', {headers: {"Authorization": token,'page':page, 'limit': limit }})
     .then((response)=>{
         // console.log(response);
        let expenses = response.data.result;
@@ -102,7 +102,7 @@ function showexpense(page){
 
 function deleteexpense(id){
     const token = localStorage.getItem('token');
-    axios.post('http://localhost:3000/expenses/delete-expense',{expenseId: id}, {headers: {"Authorization": token}})
+    axios.post('http://52.196.64.49/expenses/delete-expense',{expenseId: id}, {headers: {"Authorization": token}})
     .then((response)=>{
         message = response.data.message;
         notifyUser(message);
@@ -112,14 +112,14 @@ function deleteexpense(id){
 }
 async function razorpay() {
     const token = localStorage.getItem('token');
-    axios.get('http://localhost:3000/purchase/premiummembership', {headers: {"Authorization": token}})
+    axios.get('http://52.196.64.49/purchase/premiummembership', {headers: {"Authorization": token}})
     .then((response)=>{
         console.log(response);
     var options = {
             "key": response.data.key_id, // key ID generated from Razorpay,
             "order_id": response.data.order.id,
             "handler" : async function(response) {
-                axios.post('http://localhost:3000/purchase/updatetransactionstatus', {
+                axios.post('http://52.196.64.49/purchase/updatetransactionstatus', {
                     order_id: options.order_id,
                     payment_id: response.razorpay_payment_id,
                     message: 'SUCCESSFUL',
@@ -168,7 +168,7 @@ function premiumfeatures(){
 }
 
 function getdashboard(){
-    axios.get('http://localhost:3000/premium/dashboard')
+    axios.get('http://52.196.64.49/premium/dashboard')
     .then(response=>{
         console.log(response);
     })

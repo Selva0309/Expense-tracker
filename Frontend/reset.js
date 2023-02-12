@@ -12,7 +12,7 @@ function getID() {
 
 async function passwordreset(){
     const newpassword = document.getElementById('newpassword').value;
-    const response = await axios.post('http://localhost:3000/password/updatepassword',{newpassword: newpassword, id: uid})
+    const response = await axios.post('http://52.196.64.49/password/updatepassword',{newpassword: newpassword, id: uid})
     alert(`${response.data.message}`)    
     window.location.assign('/home.html');
 }
