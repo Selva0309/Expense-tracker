@@ -1051,17 +1051,19 @@ option{
         
     }
     #download{
+        position: absolute;
         right: 45%;
-        padding: 1%;
-        top: 6%;
+        padding: 3%;
+        top: 8%;
         height: auto;
         width: auto;
     }
 
     #back{
-        left: 3%;
-        padding: 1%;
-        top: 6%;
+        position: fixed;
+        left: 4%;
+        padding: 3%;
+        top: 8%;
         height: auto;
         width: auto;
     }
