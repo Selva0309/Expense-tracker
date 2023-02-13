@@ -10,7 +10,7 @@ body{
     background: rgb(2,0,36);
 background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(77,61,128,1) 0%, rgba(28,117,184,1) 41%, rgba(0,255,145,1) 98%) no-repeat;
     object-fit: contain;
-    height: 100vh;
+    height: auto;
     
 }
 
@@ -242,7 +242,7 @@ li {
 .login-container{
     
     width: 30%;
-    height: 68vh;
+    height: auto;
     margin: 40px auto;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -959,6 +959,11 @@ option{
         position: absolute;
         left: 0;
         top: 5%;
+    }
+    .login-container h2{
+        position: absolute;
+        left: 0;
+        top: 6%;
     }
     .media{
         position: absolute;
