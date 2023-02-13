@@ -224,13 +224,13 @@ li {
 }
 
 .notification-container {
-    background-color: #F25922;
+    background-color: #FEBE10;
     color: #051937;
     padding: 0.5rem;
     width: auto;
     margin: 0;
     position: fixed;
-    top: 15px;
+    bottom: 25px;
     right: 10px;
     display: none;
     font-family: inherit;
