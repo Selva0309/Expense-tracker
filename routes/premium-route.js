@@ -8,7 +8,7 @@ const User = require('../model/user');
 const UserAuth = require('../middleware/authentication');
 
 
-const premiumcontroller = require('../contol/premiumcontroller');
+const premiumcontroller = require('../control/premiumcontroller');
 
 
 router.get('/dashboard', premiumcontroller.getdashboard);

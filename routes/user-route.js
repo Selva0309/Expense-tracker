@@ -7,7 +7,7 @@ const Expenses = require('../model/Expenses');
 const User = require('../model/user');
 
 
-const usercontroller = require('../contol/usercontroller');
+const usercontroller = require('../control/usercontroller');
 
 
 router.post('/signup', usercontroller.adduser);

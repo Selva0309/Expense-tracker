@@ -7,7 +7,7 @@ const router = express.Router();
 const Expenses = require('../model/Expenses');
 const UserAuth = require('../middleware/authentication');
 
-const expensecontroller = require('../contol/expensecontroller');
+const expensecontroller = require('../control/expensecontroller');
 
 
 router.post('/addexpense', UserAuth.authenticate, expensecontroller.addexpense);

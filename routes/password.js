@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 const uuid = require('../middleware/uuid');
-const passwordcontroller = require('../contol/passwordcontroller');
+const passwordcontroller = require('../control/passwordcontroller');
 
 router.use('/updatepassword', passwordcontroller.updatepassword)
 
